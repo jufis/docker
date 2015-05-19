@@ -68,8 +68,6 @@ Create apache docker.conf:
 
 Add the following to the docker.conf file:
 
-'''
-
 		<VirtualHost *:443>
 	        ServerName registry.jufis.net
 	        ServerAlias registry.jufis.net
@@ -105,7 +103,6 @@ Add the following to the docker.conf file:
 	               Allow from all
 	        </Location>
 		</VirtualHost>
-'''
 
 Start apache:
 
