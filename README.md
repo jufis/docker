@@ -14,11 +14,24 @@ The install httpd,mod_ssl and openssl:
 
 >sudo yum install -y openssl
 
+
 Create a ssl dir as root user:
 
 >sudo mkdir /etc/httpd/ssl
 
-Create certificates for the server:
+
+Create certificates for the ca:
+
+>cd /etc/httpd/ssl
+
+>openssl genrsa -des3 -out ca.key 4096
+
+>openssl rsa -in ca.key -out ca.key
+
+>openssl req -new -x509 -days 365 -key ca.key -out ca.crt
+
+
+Create self-signed certificate for the server (in prod envs sign this with a real CA):
 
 >cd /etc/httpd/ssl
 
@@ -31,6 +44,23 @@ Create certificates for the server:
 >openssl rsa -in server.key.org -out server.key
 
 >openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+
+Create the client certificate:
+
+>openssl genrsa -des3 -out client.key 1024
+
+>cp client.key client.key.original
+
+>openssl rsa -in client.key -out client.key
+
+>openssl req -new -key client.key -out client.csr
+
+
+Sign the client certificate with our CA cert:
+
+>openssl x509 -req -days 3650 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out client.crt
+
 
 Create apache docker.conf:
 
@@ -45,6 +75,7 @@ Add the following to the docker.conf file:
 	        ServerAlias registry.jufis.net
 	
 	        SSLEngine on
+	        SSLCACertificateFile /etc/httpd/ssl/ca.crt
 	        SSLCertificateFile /etc/httpd/ssl/server.crt
 	        SSLCertificateKeyFile /etc/httpd/ssl/server.key
 	
@@ -60,6 +91,10 @@ Add the following to the docker.conf file:
 	        <Location />
 	                Order deny,allow
 	                Allow from all
+	                #enable this to allow ssl client certificate authentication
+	                #SSLRequireSSL
+		        #SSLVerifyClient require
+        		#SSLVerifyDepth 10
 	        </Location>
 	        <Location /v1/_ping>
 	                Satisfy any
