@@ -1,4 +1,4 @@
-#Quick guide on how to setup private docker registry over SSL
+#Quick guide on how to setup private docker registry over SSL (with/out client side cert authentication)
 
 I'm assuming a fedora 20 linux 64bit box here.
 
