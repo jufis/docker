@@ -91,8 +91,8 @@ Add the following to the docker.conf file:
 	                Allow from all
 	                #enable this to allow ssl client certificate authentication
 	                #SSLRequireSSL
-		        #SSLVerifyClient require
-        		#SSLVerifyDepth 10
+			#SSLVerifyClient require
+			#SSLVerifyDepth 10
 	        </Location>
 	        <Location /v1/_ping>
 	                Satisfy any
