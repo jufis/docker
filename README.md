@@ -31,7 +31,7 @@ Create certificates for the ca:
 >openssl req -new -x509 -days 365 -key ca.key -out ca.crt
 
 
-Create self-signed certificate for the server (in prod envs sign this with a real CA):
+Create a certificate for the server signed by our ca:
 
 >cd /etc/httpd/ssl
 
@@ -43,7 +43,7 @@ Create self-signed certificate for the server (in prod envs sign this with a rea
 
 >openssl rsa -in server.key.org -out server.key
 
->openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+>openssl x509 -req -days 3650 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 02 -out server.crt
 
 
 Create the client certificate:
@@ -130,6 +130,19 @@ Check ports are open:
 Stop firewall:
 
 >systemctl stop firewalld
+
+
+#Setup docker push/pull certificates
+
+>mkdir /etc/docker/certs.d/registry.jufis.net:443
+
+>cd /etc/docker/certs.d/registry.jufis.net:443
+
+>cp /etc/httpd/ssl/ca.crt .
+
+>cp /etc/httpd/ssl/client.crt client.cert
+
+>cp /etc/httpd/ssl/client.key .
 
 
 #Quick guide to install docker on fedora 20 and update to latest
