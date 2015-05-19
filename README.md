@@ -106,10 +106,12 @@ Add the following to the docker.conf file:
 	        <Location /v1/_ping>
 	                Satisfy any
 	                Allow from all
+	                SSLVerifyClient none
 	        </Location>
 	        <Location /_ping>
 	               Satisfy any
 	               Allow from all
+	               SSLVerifyClient none
 	        </Location>
 		</VirtualHost>
 
