@@ -48,6 +48,8 @@ Create self-signed certificate for the server (in prod envs sign this with a rea
 
 Create the client certificate:
 
+>cd /etc/httpd/ssl
+
 >openssl genrsa -des3 -out client.key 1024
 
 >cp client.key client.key.original
@@ -55,6 +57,13 @@ Create the client certificate:
 >openssl rsa -in client.key -out client.key
 
 >openssl req -new -key client.key -out client.csr
+
+
+Convert the client certificate to pkcs#12 in order to test client certificate authentication from your browser:
+
+>cd /etc/httpd/ssl
+
+>openssl pkcs12 -export -out client.pfx -inkey client.key -in client.crt -certfile ca.crt
 
 
 Sign the client certificate with our CA cert:
