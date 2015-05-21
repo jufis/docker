@@ -1,6 +1,6 @@
 #Quick guide on installing docker
 
-I am assuming a linux fedora 20 64bit as a test bed here.
+I am assuming a linux fedora 20 64bit as a test bed here. This setup doesn't provide any guarantee securities use [docker security link](docker-security.md) to improove security dramatically.
 
 Run the following commands to install docker:
 
