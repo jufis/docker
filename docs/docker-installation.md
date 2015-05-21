@@ -1,5 +1,7 @@
 #Quick guide on installing docker
 
+I am assuming a linux fedora 20 64bit as a test bed here.
+
 Run the following commands to install docker:
 
 >$ sudo yum -y remove docker
