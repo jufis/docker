@@ -30,6 +30,8 @@ Disable it:
 
 >SELINUX=disabled
 
+Reboot linux.
+
 ##Configure daemon to listen to all interfaces
 
 Edit docker configuration and ensure that the following are applied:
