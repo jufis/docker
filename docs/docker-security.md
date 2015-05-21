@@ -196,6 +196,38 @@ Edit /etc/bashrc and append at the end:
 
 Close and restart your terminal session with the same user or re-source bashrc settings.
 
+Now test the secure docker connection:
+
+>docker version
+
+Output:
+<pre>
+[jufis@jufis ~]$ docker version
+Client version: 1.6.0
+Client API version: 1.18
+Go version (client): go1.4.2
+Git commit (client): 4749651
+OS/Arch (client): linux/amd64
+Server version: 1.6.0
+Server API version: 1.18
+Go version (server): go1.4.2
+Git commit (server): 4749651
+OS/Arch (server): linux/amd64
+</pre>
+
+Test it around especially if you have some images running around:
+
+<pre>
+[jufis@jufis ~]$ docker images
+REPOSITORY                                  TAG                         IMAGE ID            CREATED             VIRTUAL SIZE
+registry.jufis.net:443/docker-rest-client   TAG_V1_04_MAY_2015_master   c00ba3434e03        6 days ago          596.5 MB
+[jufis@jufis ~]$ echo $DOCKER_
+$DOCKER_HOST        $DOCKER_TLS_VERIFY  
+[jufis@jufis ~]$ echo $DOCKER_TLS_VERIFY 
+1
+[jufis@jufis ~]$ echo $DOCKER_HOST
+tcp://docker.jufis.net:2376
+</pre>
 
 ##References
 
