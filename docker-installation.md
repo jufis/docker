@@ -1,4 +1,4 @@
-#Quick guide to install docker on fedora 20 and update to latest
+#Quick guide on installing docker
 
 Run the following commands to install docker:
 
