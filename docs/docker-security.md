@@ -1,6 +1,6 @@
 #Setup docker daemon for secure remote access
 
-If you have not installed docker follow this **[link here](docs/docker-installation.md)**
+If you have not installed docker follow this **[link here](docker-installation.md)**
 
 ##Daemon setup
 
