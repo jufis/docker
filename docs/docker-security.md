@@ -1,5 +1,7 @@
 #Setup docker daemon for secure remote access
 
+If you have not installed docker follow this **[link here](docs/docke-installation.md)**
+
 ##Daemon setup
 
 ##Certificate setup
@@ -13,3 +15,7 @@
 >cp /etc/httpd/ssl/client.crt client.cert
 
 >cp /etc/httpd/ssl/client.key .
+
+##References
+
+http://docs.docker.com/articles/https/
