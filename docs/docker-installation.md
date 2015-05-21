@@ -20,6 +20,32 @@ Run the following commands to install docker:
 
 >$ sudo usermod -a -G docker $USERNAME
 
+##Disable SELinux
+
+Edit selinux config:
+
+>vi /etc/sysconfig/selinux
+
+Disable it:
+
+>SELINUX=disabled
+
+##Configure daemon to listen to all interfaces
+
+Edit docker configuration and ensure that the following are applied:
+
+>vi /etc/sysconfig/docker.conf 
+
+>OPTIONS='-H tcp://0.0.0.0:2375'
+
+>DOCKER_CERT_PATH=/etc/docker
+
+>INSECURE_REGISTRY='--insecure-registry 0.0.0.0:5000'
+
+>setsebool -P docker_transition_unconfined
+
+>GOTRACEBACK=crash
+
 Update to latest (optional):
 
 Use this only if want the latest for tests reasons, otherwise stick with the distro files.
