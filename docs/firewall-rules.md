@@ -2,8 +2,8 @@
 
 To secure docker registry:
 
->allow connections only from docker daemon ip/port
+>setup your firewall to allow connections only from docker daemon ip/port to your.host:5000
 
-To further secure docker daemon:
+To further secure docker daemon on top of TLS:
 
->allow connections only from docker clients ip/port
+>setup your firewall to allow connections only from docker clients ip/port to your.host:2376
