@@ -10,6 +10,7 @@ In our initial installation we used docker daemon to listen to an HTTP socket in
 
 *NOTE: I assume that my docker daemon host has a DNS record named docker.jufis.net*
 *NOTE: I assume that my docker client host has a DNS record named client.jufis.net*
+*NOTE: if you don't have DNS records registered use /etc/hosts as an alternative*
 
 Let's create the private/public keys with the **user** that we will also run the docker client for the sake of the example:
 
