@@ -1,4 +1,4 @@
-#Quick guide on how to setup private docker registry over SSL (with/out client side cert authentication)
+#Quick guide on how to setup private docker registry over SSL
 
 I'm assuming a fedora 20 linux 64bit box here.
 
@@ -70,8 +70,10 @@ Sign the client certificate with our CA cert:
 
 >openssl x509 -req -days 3650 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out client.crt
 
-
+-
 Create apache docker.conf:
+
+This will create a secure virtual host without client certificate authentication.
 
 >touch /etc/httpd/conf.d/docker.conf
 
@@ -99,6 +101,7 @@ Add the following to the docker.conf file:
 	                Order deny,allow
 	                Allow from all
 	                #enable this to allow ssl client certificate authentication
+	                #use only when docker go tls renegotiation bug has been fixed
 	                #SSLRequireSSL
 	                #SSLVerifyClient require
 	                #SSLVerifyDepth 10
