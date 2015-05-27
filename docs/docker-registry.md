@@ -89,6 +89,7 @@ Add the following to the docker.conf file:
 	        SSLCertificateKeyFile /etc/httpd/ssl/server.key
 	
 	        #enable/disable this for ssl client certificate authentication
+	        #if you put this in Location directive causes tls-renegiotiation error in docker daemon
 	        SSLVerifyClient require
 	        SSLVerifyDepth 10
 	        
