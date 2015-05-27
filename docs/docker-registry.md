@@ -88,6 +88,10 @@ Add the following to the docker.conf file:
 	        SSLCertificateFile /etc/httpd/ssl/server.crt
 	        SSLCertificateKeyFile /etc/httpd/ssl/server.key
 	
+	        #enable/disable this for ssl client certificate authentication
+	        SSLVerifyClient require
+	        SSLVerifyDepth 10
+	        
 	        Header set Host "registry.jufis.net"
 	        RequestHeader set X-Forwarded-Proto "https"
 	        ProxyRequests     off
@@ -100,11 +104,7 @@ Add the following to the docker.conf file:
 	        <Location />
 	                Order deny,allow
 	                Allow from all
-	                #enable this to allow ssl client certificate authentication
-	                #use only when docker go tls renegotiation bug has been fixed
-	                #SSLRequireSSL
-	                #SSLVerifyClient require
-	                #SSLVerifyDepth 10
+	                SSLRequireSSL
 	        </Location>
 	        <Location /v1/_ping>
 	                Satisfy any
